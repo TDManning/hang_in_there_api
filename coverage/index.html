@@ -14,7 +14,7 @@
       <img src="./assets/0.12.3/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" class="hide">
-      <div class="timestamp">Generated <abbr class="timeago" title="2024-09-04T17:37:30-04:00">2024-09-04T17:37:30-04:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2024-09-04T18:11:12-04:00">2024-09-04T18:11:12-04:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -39,12 +39,12 @@
   <a name="AllFiles"></a>
 
   <div>
-    <b>10</b> files in total.
+    <b>12</b> files in total.
   </div>
 
   <div class="t-line-summary">
-    <b>47</b> relevant lines,
-    <span class="green"><b>47</b> lines covered</span> and
+    <b>52</b> relevant lines,
+    <span class="green"><b>52</b> lines covered</span> and
     <span class="red"><b>0</b> lines missed. </span>
     (<span class="green">
   100.0%
@@ -69,6 +69,28 @@
         </tr>
       </thead>
       <tbody>
+        
+          <tr class="t-file">
+            <td class="strong t-file__name"><a href="#36d318fce501e8be4c5e9516b336d477ad0fb143" class="src_link" title="app/controllers/api/v1/posters_controller.rb">app/controllers/api/v1/posters_controller.rb</a></td>
+            <td class="green strong cell--number t-file__coverage">100.00 %</td>
+            <td class="cell--number">7</td>
+            <td class="cell--number">3</td>
+            <td class="cell--number">3</td>
+            <td class="cell--number">0</td>
+            <td class="cell--number">1.00</td>
+            
+          </tr>
+        
+          <tr class="t-file">
+            <td class="strong t-file__name"><a href="#4d136d33ed866ff1f46419108ac86276998a280b" class="src_link" title="app/controllers/application_controller.rb">app/controllers/application_controller.rb</a></td>
+            <td class="green strong cell--number t-file__coverage">100.00 %</td>
+            <td class="cell--number">2</td>
+            <td class="cell--number">1</td>
+            <td class="cell--number">1</td>
+            <td class="cell--number">0</td>
+            <td class="cell--number">1.00</td>
+            
+          </tr>
         
           <tr class="t-file">
             <td class="strong t-file__name"><a href="#65509d76268c62742f9d9ad30b81a9b945d66711" class="src_link" title="app/models/application_record.rb">app/models/application_record.rb</a></td>
@@ -172,9 +194,9 @@
           <tr class="t-file">
             <td class="strong t-file__name"><a href="#fa253bf80c058391592dddc1127784e40e11454a" class="src_link" title="config/routes.rb">config/routes.rb</a></td>
             <td class="green strong cell--number t-file__coverage">100.00 %</td>
-            <td class="cell--number">10</td>
-            <td class="cell--number">2</td>
-            <td class="cell--number">2</td>
+            <td class="cell--number">12</td>
+            <td class="cell--number">3</td>
+            <td class="cell--number">3</td>
             <td class="cell--number">0</td>
             <td class="cell--number">1.00</td>
             
@@ -196,6 +218,167 @@
       </div>
 
       <div class="source_files">
+      
+        <div class="source_table" id="36d318fce501e8be4c5e9516b336d477ad0fb143">
+  <div class="header">
+    <h3>app/controllers/api/v1/posters_controller.rb</h3>
+    <h4>
+      <span class="green">
+  100.0%
+</span>
+
+      lines covered
+    </h4>
+
+    
+
+    <div class="t-line-summary">
+      <b>3</b> relevant lines.
+      <span class="green"><b>3</b> lines covered</span> and
+      <span class="red"><b>0</b> lines missed.</span>
+    </div>
+
+    
+
+  </div>
+
+  <pre>
+    <ol>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="1">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">class Api::V1::PostersController &lt; ApplicationController</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="2">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">    def index</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="3">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">        render json: {</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="4">
+            
+            
+
+            
+
+            <code class="ruby">            test_key: &quot;test value&quot;</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="5">
+            
+            
+
+            
+
+            <code class="ruby">        }</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="6">
+            
+            
+
+            
+
+            <code class="ruby">    end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="7">
+            
+            
+
+            
+
+            <code class="ruby">end</code>
+          </li>
+        </div>
+      
+    </ol>
+  </pre>
+</div>
+
+      
+        <div class="source_table" id="4d136d33ed866ff1f46419108ac86276998a280b">
+  <div class="header">
+    <h3>app/controllers/application_controller.rb</h3>
+    <h4>
+      <span class="green">
+  100.0%
+</span>
+
+      lines covered
+    </h4>
+
+    
+
+    <div class="t-line-summary">
+      <b>1</b> relevant lines.
+      <span class="green"><b>1</b> lines covered</span> and
+      <span class="red"><b>0</b> lines missed.</span>
+    </div>
+
+    
+
+  </div>
+
+  <pre>
+    <ol>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="1">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">class ApplicationController &lt; ActionController::API</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="2">
+            
+            
+
+            
+
+            <code class="ruby">end</code>
+          </li>
+        </div>
+      
+    </ol>
+  </pre>
+</div>
+
       
         <div class="source_table" id="65509d76268c62742f9d9ad30b81a9b945d66711">
   <div class="header">
@@ -2283,8 +2466,8 @@
     
 
     <div class="t-line-summary">
-      <b>2</b> relevant lines.
-      <span class="green"><b>2</b> lines covered</span> and
+      <b>3</b> relevant lines.
+      <span class="green"><b>3</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
 
@@ -2396,6 +2579,28 @@
       
         <div>
           <li class="never" data-hits="" data-linenumber="10">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="11">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">  get &quot;/api/v1/posters&quot;, to: &quot;api/v1/posters#index&quot;</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="12">
             
             
 

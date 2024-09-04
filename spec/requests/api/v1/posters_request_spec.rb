@@ -32,5 +32,7 @@ describe "Posters API" do
     get "/api/v1/posters"
 
     expect(response).to be_successful
+
+    
   end
 end

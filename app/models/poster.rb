@@ -1,3 +1,3 @@
-class Task < ApplicationRecord
-    
+class Poster < ApplicationRecord
+
 end

@@ -33,22 +33,14 @@ describe "Posters API" do
 
     expect(response).to be_successful
 
-    poster = JSON.parse(response.body, symbolize_names: true)
+    posters = JSON.parse(response.body, symbolize_names: true)
+    binding.pry
+    expect(posters[:data].count).to eq(3)
 
-    expect(poster.count).to eq(3)
+    posters[:data].each do |poster|
+      expect(poster).to have_key(:id)
+      expect(poster[:id]).to be_an(Integer)
 
-    # posters.each do |poster|
-    #   expect(song).to have_key(:id)
-    #   expect(song[:id]).to be_an(Integer)
-
-    #   expect(song).to have_key(:title)
-    #   expect(song[:title]).to be_a(String)
-
-    #   expect(song).to have_key(:length)
-    #   expect(song[:length]).to be_a(Integer)
-
-    #   expect(song).to have_key(:play_count)
-    #   expect(song[:play_count]).to be_a(Integer)
-    # end
+    end
   end
 end

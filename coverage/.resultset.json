@@ -221,6 +221,7 @@
           1,
           1,
           1,
+          1,
           null,
           null
         ]
@@ -230,8 +231,35 @@
           1,
           null
         ]
+      },
+      "/Users/kyle/Desktop/TURING/mod2/projects/hang_in_there_api/app/serlializers/poster_serializer.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          1,
+          null,
+          1,
+          3,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          null,
+          null
+        ]
       }
     },
-    "timestamp": 1725488188
+    "timestamp": 1725493623
   }
 }

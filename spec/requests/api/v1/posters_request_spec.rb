@@ -136,8 +136,8 @@ describe "Posters API" do
     new_poster = JSON.parse(response.body, symbolize_names: true)
 #require 'pry'; binding.pry
     expect(response).to be_successful
-    expect(new_poster[:name]).to eq(new_name)
-    expect(new_poster[:name]).not_to equal(original_name)
+    expect(new_poster[:data][:attributes][:name]).to eq(new_name)
+    expect(new_poster[:data][:attributes][:name]).not_to equal(original_name)
   end
 end
 

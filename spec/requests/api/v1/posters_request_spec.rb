@@ -39,7 +39,7 @@ describe "Posters API" do
 
     posters[:data].each do |poster|
       expect(poster).to have_key(:id)
-      expect(poster[:id]).to be_an(Integer)
+      expect(poster[:id]).to be_an(String)
       expect(poster[:type]).to be_a(String)
       expect(poster[:attributes]).to be_a(Hash)
       expect(poster[:attributes][:name]).to be_a(String)
@@ -52,7 +52,7 @@ describe "Posters API" do
     end
   end
   it "sends a specified instance of a poster based on id" do
-    Poster.create(
+    test_poster = Poster.create(
       name: "REGRET",
       description: "Hard work rarely pays off.",
       price: 89.00,
@@ -79,16 +79,13 @@ describe "Posters API" do
       img_url:  "https://plus.unsplash.com/premium_photo-1661293818249-fddbddf07a5d"
     )
 
-    get "/api/v1/posters/1"
+    get "/api/v1/posters/#{test_poster.id}"
 
     posters = JSON.parse(response.body, symbolize_names: true)
-    binding.pry
-    expect(posters).to be_a(Hash)
+
     expect(posters[:data]).to be_a(Hash)
-    expect(posters[:data]).to be_a(Hash)
-    expect(posters[:data][:id]).to eq("1")
     expect(posters[:data][:type]).to be_a(String)
-    expect(posters[:data][:attributes]).to eq(Hash)
+    expect(posters[:data][:attributes]).to be_a(Hash)
     expect(posters[:data][:attributes][:name]).to eq("REGRET")
     expect(posters[:data][:attributes][:description]).to eq("Hard work rarely pays off.")
     expect(posters[:data][:attributes][:price]).to eq(89.00)

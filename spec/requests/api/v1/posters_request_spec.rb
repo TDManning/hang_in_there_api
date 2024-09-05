@@ -82,12 +82,12 @@ describe "Posters API" do
     get "/api/v1/posters/1"
 
     posters = JSON.parse(response.body, symbolize_names: true)
-    
+    binding.pry
     expect(posters).to be_a(Hash)
     expect(posters[:data]).to be_a(Hash)
     expect(posters[:data]).to be_a(Hash)
-    expect(posters[:data][:id]).to eq(1)
-    expect(posters[:data][:type]).to eq(String)
+    expect(posters[:data][:id]).to eq("1")
+    expect(posters[:data][:type]).to be_a(String)
     expect(posters[:data][:attributes]).to eq(Hash)
     expect(posters[:data][:attributes][:name]).to eq("REGRET")
     expect(posters[:data][:attributes][:description]).to eq("Hard work rarely pays off.")

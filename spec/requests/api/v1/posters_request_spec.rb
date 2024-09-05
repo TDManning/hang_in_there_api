@@ -132,11 +132,12 @@ describe "Posters API" do
     original_name = poster.name
     new_name = test_params[:name]
 
-    patch "/api/vi/posters/#{poster.id}", params: test_params.to_json, headers: { "Content-Type" => "application/json" }
-
+    patch "/api/v1/posters/#{poster.id}", params: test_params.to_json, headers: { "Content-Type" => "application/json" }
+    new_poster = JSON.parse(response.body, symbolize_names: true)
+#require 'pry'; binding.pry
     expect(response).to be_successful
-    expect(poster.name).to_eq(new_name)
-    expect(poster.name).not_to equal(original_name)
+    expect(new_poster[:name]).to eq(new_name)
+    expect(new_poster[:name]).not_to equal(original_name)
   end
 end
 

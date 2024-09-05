@@ -93,4 +93,10 @@ describe "Posters API" do
     expect(posters[:data][:attributes][:vintage]).to eq(true)
     expect(posters[:data][:attributes][:img_url]).to eq("https://plus.unsplash.com/premium_photo-1661293818249-fddbddf07a5d")
   end
+
+  it "generates a new poster" do
+    post "/api/v1/posters"
+
+    posters = JSON.parse(response.body, symbolize_names: true)
+  end
 end

@@ -34,13 +34,22 @@ describe "Posters API" do
     expect(response).to be_successful
 
     posters = JSON.parse(response.body, symbolize_names: true)
-    binding.pry
+    # binding.pry
     expect(posters[:data].count).to eq(3)
 
     posters[:data].each do |poster|
       expect(poster).to have_key(:id)
       expect(poster[:id]).to be_an(Integer)
+      expect(poster[:type]).to be_a(String)
+      expect(poster[:attributes]).to be_a(Hash)
+      expect(poster[:attributes][:name]).to be_a(String)
+      expect(poster[:attributes][:description]).to be_a(String)
+      expect(poster[:attributes][:price]).to be_a(Float)
+      expect(poster[:attributes][:year]).to be_a(Integer)
+      expect(poster[:attributes][:vintage]).to be_a(TrueClass).or be_a(FalseClass)
+      expect(poster[:attributes][:img_url]).to be_a(String)
 
     end
   end
+  # it block for accessing individual song
 end

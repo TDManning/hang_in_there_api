@@ -81,6 +81,8 @@ describe "Posters API" do
 
     get "/api/v1/posters/#{test_poster.id}"
 
+    expect(response).to be_successful
+
     posters = JSON.parse(response.body, symbolize_names: true)
 
     expect(posters[:data]).to be_a(Hash)
@@ -95,8 +97,26 @@ describe "Posters API" do
   end
 
   it "generates a new poster" do
-    post "/api/v1/posters"
+    test_params = {
+      name: "DEFEAT",
+      description: "It's too late to start now.",
+      price: 35.00,
+      year: 2023,
+      vintage: false,
+      img_url:  "https://unsplash.com/photos/brown-brick-building-with-red-car-parked-on-the-side-mMV6Y0ExyIk"
+    }
+    post "/api/v1/posters", params: test_params.to_json, headers: { "Content-Type" => "application/json" }
 
-    posters = JSON.parse(response.body, symbolize_names: true)
+    expect(response).to be_successful
+
+    poster = JSON.parse(response.body, symbolize_names: true)
+    created_poster = Poster.last
+    expect(poster[:data][:attributes][:name]).to eq(created_poster[:name])
+    expect(poster[:data][:attributes][:description]).to eq(created_poster[:description])
+    expect(poster[:data][:attributes][:price]).to eq(created_poster[:price])
+    expect(poster[:data][:attributes][:year]).to eq(created_poster[:year])
+    expect(poster[:data][:attributes][:vintage]).to eq(created_poster[:vintage])
+    expect(poster[:data][:attributes][:img_url]).to eq(created_poster[:img_url])
   end
 end
+

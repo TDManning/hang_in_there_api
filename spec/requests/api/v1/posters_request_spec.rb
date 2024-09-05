@@ -118,5 +118,25 @@ describe "Posters API" do
     expect(poster[:data][:attributes][:vintage]).to eq(created_poster[:vintage])
     expect(poster[:data][:attributes][:img_url]).to eq(created_poster[:img_url])
   end
+
+  it "updates a poster" do
+    poster = Poster.create(
+      name: "REGRET",
+      description: "Hard work rarely pays off.",
+      price: 89.00,
+      year: 2018,
+      vintage: true,
+      img_url:  "https://plus.unsplash.com/premium_photo-1661293818249-fddbddf07a5d"
+    )
+    test_params = {name: "new_name"}
+    original_name = poster.name
+    new_name = test_params[:name]
+
+    patch "/api/vi/posters/#{poster.id}", params: test_params.to_json, headers: { "Content-Type" => "application/json" }
+
+    expect(response).to be_successful
+    expect(poster.name).to_eq(new_name)
+    expect(poster.name).not_to equal(original_name)
+  end
 end
 

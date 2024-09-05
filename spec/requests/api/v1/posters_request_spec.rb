@@ -34,12 +34,12 @@ describe "Posters API" do
     expect(response).to be_successful
 
     posters = JSON.parse(response.body, symbolize_names: true)
-    # binding.pry
+
     expect(posters[:data].count).to eq(3)
 
     posters[:data].each do |poster|
       expect(poster).to have_key(:id)
-      expect(poster[:id]).to be_an(Integer)
+      expect(poster[:id]).to be_an(String)
       expect(poster[:type]).to be_a(String)
       expect(poster[:attributes]).to be_a(Hash)
       expect(poster[:attributes][:name]).to be_a(String)
@@ -51,5 +51,46 @@ describe "Posters API" do
 
     end
   end
-  # it block for accessing individual song
+  it "sends a specified instance of a poster based on id" do
+    test_poster = Poster.create(
+      name: "REGRET",
+      description: "Hard work rarely pays off.",
+      price: 89.00,
+      year: 2018,
+      vintage: true,
+      img_url:  "https://plus.unsplash.com/premium_photo-1661293818249-fddbddf07a5d"
+    )
+
+    Poster.create(
+      name: "UNHAPPY",
+      description: "Hard work rarely pays off.",
+      price: 400.00,
+      year: 1738,
+      vintage: true,
+      img_url:  "https://plus.unsplash.com/premium_photo-1661293818249-fddbddf07a5d"
+    )
+
+    Poster.create(
+      name: "BIG SAD",
+      description: "Why smile when you can frown",
+      price: 120.00,
+      year: 2020,
+      vintage: false,
+      img_url:  "https://plus.unsplash.com/premium_photo-1661293818249-fddbddf07a5d"
+    )
+
+    get "/api/v1/posters/#{test_poster.id}"
+
+    posters = JSON.parse(response.body, symbolize_names: true)
+
+    expect(posters[:data]).to be_a(Hash)
+    expect(posters[:data][:type]).to be_a(String)
+    expect(posters[:data][:attributes]).to be_a(Hash)
+    expect(posters[:data][:attributes][:name]).to eq("REGRET")
+    expect(posters[:data][:attributes][:description]).to eq("Hard work rarely pays off.")
+    expect(posters[:data][:attributes][:price]).to eq(89.00)
+    expect(posters[:data][:attributes][:year]).to eq(2018)
+    expect(posters[:data][:attributes][:vintage]).to eq(true)
+    expect(posters[:data][:attributes][:img_url]).to eq("https://plus.unsplash.com/premium_photo-1661293818249-fddbddf07a5d")
+  end
 end

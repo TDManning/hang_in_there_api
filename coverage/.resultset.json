@@ -199,6 +199,7 @@
           null,
           null,
           1,
+          1,
           null
         ]
       },
@@ -223,6 +224,12 @@
           1,
           1,
           null,
+          null,
+          1,
+          1,
+          1,
+          null,
+          null,
           null
         ]
       },
@@ -232,34 +239,15 @@
           null
         ]
       },
-      "/Users/kyle/Desktop/TURING/mod2/projects/hang_in_there_api/app/serlializers/poster_serializer.rb": {
+      "/Users/kyle/Desktop/TURING/mod2/projects/hang_in_there_api/app/serializers/poster_serializer.rb": {
         "lines": [
           1,
           1,
-          null,
           1,
-          null,
-          1,
-          3,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          1,
-          null,
           null
         ]
       }
     },
-    "timestamp": 1725496756
+    "timestamp": 1725560960
   }
 }

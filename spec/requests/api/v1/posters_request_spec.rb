@@ -152,7 +152,7 @@ describe "Posters API" do
 
     expect(poster).to be_a(Poster)
 
-    destroy "/api/v1/posters/${poster.id}"
+    delete "/api/v1/posters/#{poster.id}"
     
     expect(response).to be_successful
     expect(response).to have_http_status(:no_content)

@@ -151,9 +151,11 @@ describe "Posters API" do
     )
 
     expect(poster).to be_a(Poster)
+    expect(Poster.all).to include(poster)
 
     delete "/api/v1/posters/#{poster.id}"
     
+    expect(Poster.all).not_to include(poster)
     expect(response).to be_successful
     expect(response).to have_http_status(:no_content)
   end

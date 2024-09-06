@@ -139,5 +139,23 @@ describe "Posters API" do
     expect(new_poster[:data][:attributes][:name]).to eq(new_name)
     expect(new_poster[:data][:attributes][:name]).not_to equal(original_name)
   end
+
+  it "destroys a specifed poster" do
+    poster = Poster.create(
+      name: "REGRET",
+      description: "Hard work rarely pays off.",
+      price: 89.00,
+      year: 2018,
+      vintage: true,
+      img_url:  "https://plus.unsplash.com/premium_photo-1661293818249-fddbddf07a5d"
+    )
+
+    expect(poster).to be_a(Poster)
+
+    destroy "/api/v1/posters/${poster.id}"
+    
+    expect(response).to be_successful
+    expect(response).to have_http_status(:no_content)
+  end
 end
 

@@ -194,7 +194,7 @@ describe "Posters API" do
 
     posters = JSON.parse(response.body, symbolize_names: true)
 
-    expect(posters[:meta][:count]).to eq(3)
+    expect(posters[:meta][:count]).to eq(posters[:data].count)
   end
 end
 

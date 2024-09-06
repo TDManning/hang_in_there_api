@@ -20,6 +20,8 @@ class Api::V1::PostersController < ApplicationController
     end
 
     def destroy
+        poster = Poster.find(params[:id])
+        poster.destroy
         head :no_content
     end
     

@@ -5,7 +5,9 @@ class Api::V1::PostersController < ApplicationController
         elsif params[:name]
             posters = Poster.where("name ILIKE ?", "%#{params[:name]}%")
         elsif params[:min_price]
-            posters = Poster.where("price > #{params[:min_price]}")
+            posters = Poster.where("price >= #{params[:min_price]}")
+        elsif params[:max_price]
+            posters = Poster.where("price <= #{params[:max_price]}")
         else
             posters = Poster.all
         end

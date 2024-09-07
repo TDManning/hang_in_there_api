@@ -13,14 +13,16 @@ class Api::V1::PostersController < ApplicationController
 
     def show
         poster = Poster.find(params[:id])
-        
+
         metaObject = inject_meta_object(posters)
         render json: PosterSerializer.new(poster, metaObject)
     end
     
     def create
         poster = Poster.create(poster_params)
-        render json: PosterSerializer.new(poster)
+        
+        metaObject = inject_meta_object(posters)
+        render json: PosterSerializer.new(posters, metaObject)
     end
 
     def update

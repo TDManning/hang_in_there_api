@@ -120,6 +120,24 @@ describe "Posters API" do
     expect(response).to be_successful
     result = JSON.parse(response.body, symbolize_names: true)
     expect(result[:meta][:count]).to eq(result[:data].count)
+
+    #SHOW
+    get "/api/v1/posters/#{@poster_1[:id]}"
+
+    expect(response).to be_successful
+    result = JSON.parse(response.body, symbolize_names: true)
+    expect(result[:meta][:count]).to eq(1)
+
+    #CREATE
+
+    test_params = {name: "new_name"}
+    new_name = test_params[:name]
+
+    post "/api/v1/posters", params: @poster_1.to_json, headers: { "Content-Type" => "application/json" }
+
+    expect(response).to be_successful
+    result = JSON.parse(response.body, symbolize_names: true)
+    expect(result[:meta][:count]).to eq(1)
   end
 
   it "sorts results ascending by query parameters" do

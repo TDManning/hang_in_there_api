@@ -114,6 +114,7 @@ describe "Posters API" do
 
   it "produces a JSON response with a 'meta' for count" do
 
+    #INDEX
     get "/api/v1/posters"
 
     expect(response).to be_successful

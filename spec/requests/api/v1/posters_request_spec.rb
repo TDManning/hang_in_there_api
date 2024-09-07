@@ -258,5 +258,48 @@ describe "Posters API" do
     expect((posters[:data][0][:id]).to_s).to eq(poster_3[:id].to_s)
     expect((posters[:data][2][:id]).to_s).to eq(poster_1[:id].to_s)
   end
+
+  it "filters results based on name parameter" do
+    poster_1 = Poster.create(
+      name: "DISASTER",
+      description: "como se dice 'epic fail'?",
+      price: 28.00,
+      year: 2018,
+      vintage: true,
+      img_url:  "https://plus.unsplash.com/premium_photo-1661293818249-fddbddf07a5d"
+    )
+    poster_2 = Poster.create(
+      name: "TERRIBLE",
+      description: "Baka!",
+      price: 15.00,
+      year: 1738,
+      vintage: true,
+      img_url:  "https://plus.unsplash.com/premium_photo-1661293818249-fddbddf07a5d"
+    )
+    poster_3 = Poster.create(
+      name: "BIG SAD",
+      description: "Why smile when you can frown",
+      price: 120.00,
+      year: 2020,
+      vintage: false,
+      img_url:  "https://plus.unsplash.com/premium_photo-1661293818249-fddbddf07a5d"
+    )
+
+    get "/api/v1/posters?name=ter"
+
+    expect(response).to be_successful
+    posters = JSON.parse(response.body, symbolize_names: true)
+    expect(posters[:data]).to be_an(Array)
+    expect(posters[:data].length).to eq(2)
+    expect((posters[:data][0][:attributes][:name])).to eq("DISASTER")
+    expect((posters[:data][1][:attributes][:name])).to eq("TERRIBLE")
+
+    get "/api/v1/posters?name=asdfghjkl"
+
+    expect(response).to be_successful
+    results = JSON.parse(response.body, symbolize_names: true)
+    expect(results[:data]).to eq([])
+  end
+
 end
 

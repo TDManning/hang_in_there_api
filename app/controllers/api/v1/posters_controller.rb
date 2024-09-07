@@ -2,6 +2,8 @@ class Api::V1::PostersController < ApplicationController
     def index
         if params[:sort] 
             posters = Poster.order(created_at: params[:sort].to_sym)
+        elsif params[:name]
+            posters = Poster.where("name ILIKE ?", "%#{params[:name]}%")
         else
             posters = Poster.all
         end

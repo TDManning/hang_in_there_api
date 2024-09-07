@@ -8,13 +8,14 @@ class Api::V1::PostersController < ApplicationController
         posters = posters.filtered_by_max_price(params[:max_price]) if params[:max_price]
 
         metaObject = inject_meta_object(posters)
-        
         render json: PosterSerializer.new(posters, metaObject) 
     end
 
     def show
         poster = Poster.find(params[:id])
-        render json: PosterSerializer.new(poster)
+        
+        metaObject = inject_meta_object(posters)
+        render json: PosterSerializer.new(poster, metaObject)
     end
     
     def create

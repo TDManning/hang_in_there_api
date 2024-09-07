@@ -4,6 +4,8 @@ class Api::V1::PostersController < ApplicationController
             posters = Poster.order(created_at: params[:sort].to_sym)
         elsif params[:name]
             posters = Poster.where("name ILIKE ?", "%#{params[:name]}%")
+        elsif params[:min_price]
+            posters = Poster.where("price > #{params[:min_price]}")
         else
             posters = Poster.all
         end

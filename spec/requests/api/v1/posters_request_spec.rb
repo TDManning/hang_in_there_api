@@ -138,6 +138,13 @@ describe "Posters API" do
     expect(response).to be_successful
     result = JSON.parse(response.body, symbolize_names: true)
     expect(result[:meta][:count]).to eq(1)
+
+    #UPDATE
+    patch "/api/v1/posters/#{@poster_1.id}", params: test_params.to_json, headers: { "Content-Type" => "application/json" }
+
+    result = JSON.parse(response.body, symbolize_names: true)
+    expect(response).to be_successful
+    expect(result[:meta][:count]).to eq(1)
   end
 
   it "sorts results ascending by query parameters" do

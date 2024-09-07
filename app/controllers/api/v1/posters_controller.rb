@@ -7,26 +7,29 @@ class Api::V1::PostersController < ApplicationController
         posters = posters.filtered_by_min_price(params[:min_price]) if params[:min_price]
         posters = posters.filtered_by_max_price(params[:max_price]) if params[:max_price]
 
-        metaObject = {
-            meta: {count: posters.count}
-        }
-        
+        metaObject = inject_meta_object(posters)
         render json: PosterSerializer.new(posters, metaObject) 
     end
 
     def show
         poster = Poster.find(params[:id])
-        render json: PosterSerializer.new(poster)
+
+        metaObject = inject_meta_object(poster)
+        render json: PosterSerializer.new(poster, metaObject)
     end
     
     def create
         poster = Poster.create(poster_params)
-        render json: PosterSerializer.new(poster)
+        
+        metaObject = inject_meta_object(poster)
+        render json: PosterSerializer.new(poster, metaObject)
     end
 
     def update
         poster = Poster.update(params[:id], poster_params)
-        render json: PosterSerializer.new(poster)
+        
+        metaObject = inject_meta_object(poster)
+        render json: PosterSerializer.new(poster, metaObject)
     end
 
     def destroy
@@ -40,4 +43,12 @@ class Api::V1::PostersController < ApplicationController
     def poster_params
         params.require(:poster).permit(:name, :description, :price, :year, :vintage, :img_url)
     end
+
+    def inject_meta_object(result_instance)
+        if result_instance.is_a?(ActiveRecord::Relation )
+          { meta: { count: result_instance.count } }
+        else
+          { meta: { count: 1 } }
+        end
+       end
 end

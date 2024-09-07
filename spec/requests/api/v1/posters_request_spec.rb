@@ -114,21 +114,17 @@ describe "Posters API" do
 
   it "produces a JSON response with a 'meta' for count" do
 
-    #INDEX
     get "/api/v1/posters"
 
     expect(response).to be_successful
     result = JSON.parse(response.body, symbolize_names: true)
     expect(result[:meta][:count]).to eq(result[:data].count)
 
-    #SHOW
     get "/api/v1/posters/#{@poster_1[:id]}"
 
     expect(response).to be_successful
     result = JSON.parse(response.body, symbolize_names: true)
     expect(result[:meta][:count]).to eq(1)
-
-    #CREATE
 
     test_params = {name: "new_name"}
     new_name = test_params[:name]
@@ -139,7 +135,6 @@ describe "Posters API" do
     result = JSON.parse(response.body, symbolize_names: true)
     expect(result[:meta][:count]).to eq(1)
 
-    #UPDATE
     patch "/api/v1/posters/#{@poster_1.id}", params: test_params.to_json, headers: { "Content-Type" => "application/json" }
 
     result = JSON.parse(response.body, symbolize_names: true)

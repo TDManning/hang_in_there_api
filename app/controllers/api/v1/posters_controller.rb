@@ -1,20 +1,16 @@
 class Api::V1::PostersController < ApplicationController
     def index
-        if params[:sort] 
-            posters = Poster.order(created_at: params[:sort].to_sym)
-        elsif params[:name]
-            posters = Poster.where("name ILIKE ?", "%#{params[:name]}%")
-        elsif params[:min_price]
-            posters = Poster.where("price >= #{params[:min_price]}")
-        elsif params[:max_price]
-            posters = Poster.where("price <= #{params[:max_price]}")
-        else
-            posters = Poster.all
-        end
+        posters = Poster.all
+
+        posters = posters.sorted_by_created_at(params[:sort]) if params[:sort]
+        posters = posters.filtered_by_name(params[:name]) if params[:name]
+        posters = posters.filtered_by_min_price(params[:min_price]) if params[:min_price]
+        posters = posters.filtered_by_max_price(params[:max_price]) if params[:max_price]
 
         metaObject = {
             meta: {count: posters.count}
         }
+        
         render json: PosterSerializer.new(posters, metaObject) 
     end
 
